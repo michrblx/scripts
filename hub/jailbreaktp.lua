@@ -135,6 +135,5 @@ local function teleport(cframe, tried) -- unoptimized
 
     task.wait(0.5);
     dependencies.variables.teleporting = false;
-end;
 
 return teleport;

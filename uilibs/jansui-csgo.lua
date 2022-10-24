@@ -782,29 +782,7 @@
 			end
 		end)
 
-		function option:SetValue(value, nocallback)
-			if typeof(value) ~= "number" then value = 0 end
-			value = library.round(value, option.float)
-			value = math.clamp(value, self.min, self.max)
-			if self.min >= 0 then
-				option.fill:TweenSize(UDim2.new((value - self.min) / (self.max - self.min), 0, 1, 0), "Out", "Quad", 0.05, true)
-			else
-				option.fill:TweenPosition(UDim2.new((0 - self.min) / (self.max - self.min), 0, 0, 0), "Out", "Quad", 0.05, true)
-				option.fill:TweenSize(UDim2.new(value / (self.max - self.min), 0, 1, 0), "Out", "Quad", 0.1, true)
-			end
-			library.flags[self.flag] = value
-			self.value = value
-			option.title.Text = (option.text == "nil" and "" or option.text .. ": ") .. option.value .. option.suffix
-			if not nocallback then
-				self.callback(value)
-			end
-		end
-		delay(1, function()
-			if library then
-				option:SetValue(option.value)
-			end
-		end)
-	end
+	
 
 	library.createList = function(option, parent)
 		option.hasInit = true
